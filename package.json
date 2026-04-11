@@ -1,0 +1,16 @@
+{
+  "name": "space-shuffle",
+  "version": "0.0.1",
+  "description": "Shuffle music files with spacing between the same artist.",
+  "license": "MIT",
+  "author": "Zhipeng Zhang",
+  "type": "module",
+  "main": "dist/cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "typescript": "^6.0.2"
+  }
+}
