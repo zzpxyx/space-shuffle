@@ -1,8 +1,6 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
-
-const root = String(process.argv[2]);
-const space = Number(process.argv[3]);
+import * as util from "node:util";
 
 const getMetadata = (path: string): { artist: string } => {
   const artist = path.split("/")[0];
@@ -12,6 +10,14 @@ const getMetadata = (path: string): { artist: string } => {
   return { artist };
 };
 
+const { values } = util.parseArgs({
+  options: {
+    "target-folder": { type: "string", short: "t" },
+    space: { type: "string", short: "s" },
+  },
+});
+const root = String(values["target-folder"]);
+const space = Number(values.space);
 const filePaths = fs.readdirSync(root, {
   recursive: true,
   withFileTypes: true,
