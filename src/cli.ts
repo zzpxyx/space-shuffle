@@ -18,16 +18,16 @@ if (!values["target-folder"] || !values.regex || !values.space) {
   process.exit(0);
 }
 const targetFolder = String(values["target-folder"]);
-const artistRegex = String(values.regex);
+const regex = String(values.regex);
 const space = Number(values.space);
 const filePaths = fs.readdirSync(targetFolder, {
   recursive: true,
   withFileTypes: true,
 });
-const songs = filePaths
+const files = filePaths
   .map((entry) => {
     const fullPath = path.join(entry.parentPath, entry.name);
-    const artist = new RegExp(artistRegex).exec(fullPath)?.groups?.artist;
+    const artist = new RegExp(regex).exec(fullPath)?.groups?.artist;
     if (artist) {
       return { path: fullPath, artist };
     } else {
@@ -35,21 +35,21 @@ const songs = filePaths
     }
   })
   .filter((entry) => entry !== null);
-const shuffled = songs
-  .map((song) => ({ song, rank: Math.random() }))
+const shuffled = files
+  .map((file) => ({ file, rank: Math.random() }))
   .sort((a, b) => a.rank - b.rank)
-  .map(({ song }) => song);
-console.error(`Shuffling ${shuffled.length} songs.`);
+  .map(({ file }) => file);
+console.error(`Shuffling ${shuffled.length} files.`);
 const spaceShuffled: string[] = [];
 const restricted: string[] = [];
-for (const song of shuffled) {
-  if (!restricted.includes(song.artist)) {
-    spaceShuffled.push(song.path);
-    restricted.push(song.artist);
+for (const file of shuffled) {
+  if (!restricted.includes(file.artist)) {
+    spaceShuffled.push(file.path);
+    restricted.push(file.artist);
     if (restricted.length > space) {
       restricted.shift();
     }
   }
 }
-console.error(`${spaceShuffled.length} songs left.`);
-spaceShuffled.forEach((song) => console.log(song));
+console.error(`${spaceShuffled.length} files left.`);
+spaceShuffled.forEach((file) => console.log(file));
