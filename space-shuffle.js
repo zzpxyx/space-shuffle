@@ -38,9 +38,8 @@ const files = filePaths
   })
   .filter((entry) => entry !== null);
 const shuffled = files
-  .map((file) => ({ file, rank: Math.random() }))
-  .sort((a, b) => a.rank - b.rank)
-  .map(({ file }) => file);
+  .map((file) => ({ ...file, rank: Math.random() }))
+  .sort((a, b) => a.rank - b.rank);
 console.error(`Shuffling ${shuffled.length} files.`);
 /** @type {string[]} */
 const spaceShuffled = [];

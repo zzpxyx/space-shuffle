@@ -12,7 +12,7 @@ Currently, the script uses a very naive and lossy algorithm:
 2. Scan the list. If a music file has the same artist within the past `space` number of files, discard it and move on to the next file.
 3. Output the paths for the remaining files.
 
-## Build and Run
+## Usage
 
 ```
 node space-shuffle.js --target-folder /path/to/parent/folder --regex "parent/folder/(?<artist>.+?)/.+?(\.mp3|\.m4a)$" --space 5 > list.m3u8
