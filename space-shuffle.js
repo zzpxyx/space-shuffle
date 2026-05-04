@@ -1,3 +1,5 @@
+// @ts-check
+
 import * as fs from "node:fs";
 import * as path from "node:path";
 import * as util from "node:util";
@@ -40,8 +42,10 @@ const shuffled = files
   .sort((a, b) => a.rank - b.rank)
   .map(({ file }) => file);
 console.error(`Shuffling ${shuffled.length} files.`);
-const spaceShuffled: string[] = [];
-const restricted: string[] = [];
+/** @type {string[]} */
+const spaceShuffled = [];
+/** @type {string[]} */
+const restricted = [];
 for (const file of shuffled) {
   if (!restricted.includes(file.artist)) {
     spaceShuffled.push(file.path);

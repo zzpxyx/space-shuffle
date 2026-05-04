@@ -15,9 +15,7 @@ Currently, the script uses a very naive and lossy algorithm:
 ## Build and Run
 
 ```
-npm install
-npx tsc
-node cli.js --target-folder /path/to/parent/folder --regex "parent/folder/(?<artist>.+?)/.+?(\.mp3|\.m4a)$" --space 5 > list.m3u8
+node space-shuffle.js --target-folder /path/to/parent/folder --regex "parent/folder/(?<artist>.+?)/.+?(\.mp3|\.m4a)$" --space 5 > list.m3u8
 ```
 
 CLI parameters:
